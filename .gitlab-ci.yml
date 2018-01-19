@@ -1,0 +1,21 @@
+image: java:latest
+
+stages:
+- build
+- execute
+
+build:
+  stage: build
+  script: 
+    - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac Calculator.java
+    - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac FirstTest.java
+  artifacts:
+    paths:
+        - Calculator.*
+        - FirstTest.*
+
+execute:
+  stage: execute
+  script: 
+    - /usr/lib/jvm/java-8-openjdk-amd64/bin/java -ea FirstTest
+
